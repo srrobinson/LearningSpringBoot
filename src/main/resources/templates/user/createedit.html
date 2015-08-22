@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="includes/header::header">
+    <meta charset="UTF-8" />
+    <title></title>
+
+</head>
+<body>
+
+<h2 th:if="${action.equals('create')}" >Create a user</h2>
+<h2 th:if="${action.equals('update')}" >Update a user</h2>
+
+
+<form action="#" th:action="@{/user}" th:object="${user}" method="post">
+    <input type="hidden" name="action" th:value="${action}" />
+    <input type="hidden" name="id" th:if="${user.id != 0}" th:value="${user.id}" />
+    <p>Name: <input type="text" th:field="*{name}"/> <br />
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:errorclass="error"></span> </p>
+    <p><input type="submit" value="Submit"/> </p>
+</form>
+
+
+<a th:href="@{/user}">Return to users</a>
+<script th:replace="includes/scripts::scripts" ></script>
+
+<footer th:include="includes/footer::footer" class="footerText"></footer>
+</body>
+</html>

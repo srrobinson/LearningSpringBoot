@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="includes/header::header">
+    <meta charset="UTF-8"/>
+    <title>Wireframe</title>
+
+</head>
+<body>
+
+<h2>User List</h2>
+
+<p>This is the list of existing users</p><br/>
+
+<div th:if="${!users.isEmpty()}">
+    <ul>
+        <li th:each="user : ${users}">
+            <span th:text="${user.name}"></span>
+
+            <form class="confirmDelete inlineForm" action="#" th:action="@{/user}" method="post" th:object="${user}">
+                <input type="hidden" name="action" value="delete"/>
+                <input type="hidden" name="id" th:value="${user.id}"/>
+                <input type="submit" value="Delete"/>
+            </form>
+            <form class="inlineForm" action="#" th:action="@{/user}" method="post" th:object="${user}">
+                <input type="hidden" name="action" value="edit"/>
+                <input type="hidden" name="id" th:value="${user.id}"/>
+                <input type="submit" value="Edit"/>
+            </form>
+        </li>
+    </ul>
+</div>
+
+<div th:if="${users.isEmpty()}">
+    <h3>No greetings were found!</h3>
+</div>
+<br />
+<br />
+
+<a th:href="@{/user}">Return to users</a>
+<script th:replace="includes/scripts::scripts" ></script>
+
+<footer th:include="includes/footer::footer" class="footerText"></footer>
+
+</body>
+</html>

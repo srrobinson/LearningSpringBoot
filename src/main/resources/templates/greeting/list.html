@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="includes/header::header">
+    <meta charset="UTF-8"/>
+    <title>Wireframe</title>
+
+</head>
+<body>
+
+<h2>Greeting List</h2>
+
+<p>This is the list of existing greetings</p><br/>
+
+<div th:if="${!greetings.isEmpty()}">
+    <ul>
+        <li th:each="greeting : ${greetings}">
+            <span th:text="${greeting.text} + ' from ' + ${greeting.user.name}">Filler here</span>
+
+            <form class="confirmDelete inlineForm" action="#" th:action="@{/greeting}" method="post" th:object="${greeting}">
+                <input type="hidden" name="action" value="delete"/>
+                <input type="hidden" name="id" th:value="${greeting.id}"/>
+                <input type="submit" value="Delete"/>
+            </form>
+            <form class="inlineForm" action="#" th:action="@{/greeting}" method="post" th:object="${greeting}">
+                <input type="hidden" name="action" value="edit"/>
+                <input type="hidden" name="id" th:value="${greeting.id}"/>
+                <input type="submit" value="Edit"/>
+            </form>
+        </li>
+    </ul>
+</div>
+
+<div th:if="${greetings.isEmpty()}">
+    <h3>No greetings were found!</h3>
+</div>
+<br />
+<br />
+
+<a th:href="@{/greeting}">Return to greetings</a>
+<script th:replace="includes/scripts::scripts" ></script>
+
+<footer th:include="includes/footer::footer" class="footerText"></footer>
+
+</body>
+</html>

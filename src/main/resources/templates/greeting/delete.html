@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="includes/header::header">
+    <meta charset="UTF-8"/>
+    <title>Wireframe</title>
+
+
+</head>
+<body>
+<h2>Delete a greeting</h2>
+
+<ul>
+    <li th:each="greeting: ${greetings}" >
+        <span th:text="${greeting.text}">Filler Here</span>
+        <form class="confirmDelete" action="#" th:action="@{/delete/greeting}" method="post" th:object="${greeting}">
+            <input type="hidden" name="id" th:value="${greeting.id}"/>
+            <input type="submit" value="Delete"/>
+        </form>
+    </li>
+</ul>
+<script th:replace="includes/scripts::scripts" ></script>
+<footer th:include="includes/footer::footer" class="footerText"></footer>
+
+</body>
+</html>

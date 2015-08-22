@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="includes/header::header">
+    <meta charset="UTF-8" />
+    <title>Wireframe</title>
+</head>
+<body>
+
+<h2>Users Home</h2>
+Welcome to the users page<br />
+<br />
+To create a user, click <a th:href="@{/user/create}"> here</a> <br />
+To see existing users and edit or delete them, click <a th:href="@{/user/list}">here</a> <br />
+
+<script th:replace="includes/scripts::scripts" ></script>
+<footer th:include="includes/footer::footer" class="footerText"></footer>
+</body>
+</html>

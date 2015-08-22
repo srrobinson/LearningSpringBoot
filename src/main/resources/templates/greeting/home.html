@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="includes/header::header">
+    <meta charset="UTF-8" />
+    <title>Wireframe</title>
+</head>
+<body>
+
+<h2>Greetings Home</h2>
+Welcome to the greetings page<br />
+<br />
+To create a greeting, click <a th:href="@{/greeting/create}"> here</a> <br />
+To see existing greetings and edit or delete them, click <a th:href="@{/greeting/list}">here</a> <br />
+
+<script th:replace="includes/scripts::scripts" ></script>
+<footer th:include="includes/footer::footer" class="footerText"></footer>
+</body>
+</html>

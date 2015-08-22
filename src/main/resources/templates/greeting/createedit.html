@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="includes/header::header">
+    <meta charset="UTF-8" />
+    <title>Wireframe</title>
+
+</head>
+<body>
+<h2 th:if="${action.equals('create')}" >Create a greeting</h2>
+<h2 th:if="${action.equals('update')}" >Update a greeting</h2>
+
+<form action="#" th:action="@{/greeting}" th:object="${greeting}" method="post">
+    <input type="hidden" name="action" th:value="${action}" />
+    <input type="hidden" name="id" th:if="${greeting.id != 0}" th:value="${greeting.id}" />
+    <p>User: <select th:field="*{user}" name="users">
+        <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.name}"></option>
+
+    </select> </p>
+    <p>Greeting: <br /><textarea th:field="*{text}"></textarea> <br />
+        <span th:if="${#fields.hasErrors('text')}" th:errors="*{text}" th:errorclass="error"></span></p>
+    <p><input type="submit" value="Submit"/> </p>
+</form>
+
+<br />
+<br />
+
+<a th:href="@{/greeting}">Return to greetings</a>
+<script th:replace="includes/scripts::scripts" ></script>
+
+<footer th:include="includes/footer::footer" class="footerText"></footer>
+
+
+</body>
+</html>
